@@ -4,27 +4,43 @@ using UnityEngine.EventSystems;
 public class CarteJoueur : MonoBehaviour
 {
     public SpriteRenderer carteJoueur;
-    Color[] couleursMix = new Color[4];
-    int maxIndex = 0;
+    public SpriteRenderer carteVise;
+    public GenerationCouleur script;
+    GameObject[] objetsCouleursMix = new GameObject[4]; // Nouveau tableau de GameObject de 4 espaces
+    int nbrCouleurs = 0;
 
     public void AjouterCouleur(BaseEventData eventData)
     {
         PointerEventData pointerData = eventData as PointerEventData;
-        if (pointerData != null || maxIndex < 4)
+        if (pointerData != null && nbrCouleurs < 4)
         {
             GameObject objet = pointerData.pointerPress;
-            print(objet);
-            SpriteRenderer sprite = objet.GetComponent<SpriteRenderer>();
-            couleursMix[maxIndex] = sprite.color;
-            maxIndex++;
+            objetsCouleursMix[nbrCouleurs] = objet;
+            nbrCouleurs++;
+            objet.SetActive(false);
+            MiseAJourCarteJoueur();
         }
     }
 
     public void DefaireCouleur()
     {
-        if (maxIndex != 0)
+        if (nbrCouleurs != 0)
         {
-            maxIndex--;
+            nbrCouleurs--;
+            objetsCouleursMix[nbrCouleurs].SetActive(true);
+            MiseAJourCarteJoueur();
+        }
+    }
+
+    public void VerifierCarteJoueur()
+    {
+        if (carteVise.color == carteJoueur.color && script.nbrCartes == nbrCouleurs)
+        {
+            print("oui");
+        }
+        else
+        {
+            print("non");
         }
     }
 
@@ -32,11 +48,20 @@ public class CarteJoueur : MonoBehaviour
     {
         Color resultat = new Color(0, 0, 0);
 
-        for (int i = 0; i <= maxIndex; i++)
+        if (nbrCouleurs == 0)
         {
-            resultat += couleursMix[i];
+            carteJoueur.color = new Color(255, 255, 255);
+            return;
         }
-        resultat /= maxIndex + 1;
+
+        for (int i = 0; i < nbrCouleurs; i++)
+        {
+            SpriteRenderer sprite = objetsCouleursMix[i].GetComponent<SpriteRenderer>();
+            resultat += sprite.color;
+        }
+        resultat /= nbrCouleurs;
+
+        carteJoueur.color = resultat;
         
     }
 }

@@ -5,6 +5,7 @@ public class GenerationCouleur : MonoBehaviour
 {   
     public SpriteRenderer[] cartes;
     public SpriteRenderer carteViser;
+    public int nbrCartes = 0;
     //UI
     public TMP_Text texteCartes;
     void Start()
@@ -15,7 +16,7 @@ public class GenerationCouleur : MonoBehaviour
             carte.color = GenererCouleursCartes();
         }
 
-        int nbrCartes = Random.Range(2,5); //2 a 4
+        nbrCartes = Random.Range(2,5); //2 a 4
         texteCartes.text = $"Choisissez {nbrCartes} cartes";
 
         carteViser.color = GenererCouleurCarteViser(cartes, nbrCartes);
