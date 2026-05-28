@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionCercle
   spawn: {fileID: 2147244512}
+  viser: {fileID: 812850438}
 --- !u!1 &141046691
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionCercle
   spawn: {fileID: 2147244512}
+  viser: {fileID: 812850438}
 --- !u!50 &160695769
 Rigidbody2D:
   serializedVersion: 5
@@ -738,9 +740,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a83cb1f2f607d4d8969a6cad7fb677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gestionCercle: {fileID: 0}
-  cercleViser: {fileID: 0}
+  cercleViser: {fileID: 812850437}
   sceneJeu: Niveau2
+  cercles:
+  - {fileID: 52966782}
+  - {fileID: 160695771}
+  - {fileID: 2117459973}
 --- !u!1 &989493631
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +760,7 @@ GameObject:
   - component: {fileID: 989493636}
   m_Layer: 0
   m_Name: sol
-  m_TagString: Player
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1551,6 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionCercle
   spawn: {fileID: 2147244512}
+  viser: {fileID: 812850438}
 --- !u!50 &2117459971
 Rigidbody2D:
   serializedVersion: 5
